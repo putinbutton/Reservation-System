@@ -1,0 +1,6 @@
+package com.example.Reservation.System;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BarberRepository extends JpaRepository<Barber, Long> {
+}
