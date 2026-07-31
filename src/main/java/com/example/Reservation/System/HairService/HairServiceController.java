@@ -1,5 +1,6 @@
-package com.example.Reservation.System;
+package com.example.Reservation.System.HairService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ public class HairServiceController {
     private final HairServiceService hairServiceService;
 
     @PostMapping
-    public HairService createHairService(@RequestBody HairService hairService) {
+    public HairService createHairService(@Valid @RequestBody HairService hairService) {
         return hairServiceService.createHairService(hairService);
     }
 

@@ -1,4 +1,4 @@
-package com.example.Reservation.System;
+package com.example.Reservation.System.Barber;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

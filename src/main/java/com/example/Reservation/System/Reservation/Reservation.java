@@ -1,5 +1,8 @@
-package com.example.Reservation.System;
+package com.example.Reservation.System.Reservation;
 
+import com.example.Reservation.System.Barber.Barber;
+import com.example.Reservation.System.Client.Client;
+import com.example.Reservation.System.HairService.HairService;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.Reservation.System;
+package com.example.Reservation.System.Barber;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

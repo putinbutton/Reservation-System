@@ -1,5 +1,6 @@
-package com.example.Reservation.System;
+package com.example.Reservation.System.Barber;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ public class BarberController {
     private final BarberService barberService;
 
     @PostMapping
-    public Barber createBarber(@RequestBody Barber barber) {
+    public Barber createBarber(@Valid @RequestBody Barber barber) {
         return barberService.createBarber(barber);
     }
 

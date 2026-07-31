@@ -1,5 +1,6 @@
-package com.example.Reservation.System;
+package com.example.Reservation.System.Client;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping
-    public Client createClient(@RequestBody Client client) {
+    public Client createClient(@Valid @RequestBody Client client) {
         return clientService.createClient(client);
     }
 

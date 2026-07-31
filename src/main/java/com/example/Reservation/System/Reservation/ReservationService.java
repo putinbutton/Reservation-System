@@ -1,8 +1,14 @@
-package com.example.Reservation.System;
+package com.example.Reservation.System.Reservation;
 
+import com.example.Reservation.System.Barber.Barber;
+import com.example.Reservation.System.Barber.BarberRepository;
+import com.example.Reservation.System.Client.Client;
+import com.example.Reservation.System.Client.ClientRepository;
+import com.example.Reservation.System.HairService.HairService;
+import com.example.Reservation.System.HairService.HairServiceRepository;
+import com.example.Reservation.System.common.ReservationsConflictException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -10,12 +16,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReservationService {
 
-    private final ReservationRepository reservationRepository;
+    private final com.example.Reservation.System.Reservation.ReservationRepository reservationRepository;
     private final ClientRepository clientRepository;
     private final BarberRepository barberRepository;
     private final HairServiceRepository hairServiceRepository;
 
-    public Reservation createReservation(CreateReservationRequest request) {
+    public com.example.Reservation.System.Reservation.Reservation createReservation(com.example.Reservation.System.Reservation.CreateReservationRequest request) {
         Client client = clientRepository.findById(request.clientId())
                 .orElseThrow(() -> new RuntimeException("Client not found"));
 
@@ -31,10 +37,10 @@ public class ReservationService {
                         request.reservationDateTime()
                 );
         if(barberAlreadyBooked) {
-            throw new RuntimeException("Barber already has a reservation at this time");
+            throw new ReservationsConflictException("Barber already has a reservation at this time");
         }
 
-        Reservation reservation = new Reservation();
+        com.example.Reservation.System.Reservation.Reservation reservation = new com.example.Reservation.System.Reservation.Reservation();
         reservation.setClient(client);
         reservation.setBarber(barber);
         reservation.setHairService(hairService);
@@ -43,11 +49,11 @@ public class ReservationService {
         return reservationRepository.save(reservation);
     }
 
-    public List<Reservation> getAllReservations() {
+    public List<com.example.Reservation.System.Reservation.Reservation> getAllReservations() {
         return reservationRepository.findAll();
     }
 
-    public Reservation getReservationById(Long id){
+    public com.example.Reservation.System.Reservation.Reservation getReservationById(Long id){
         return reservationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Reservation not found"));
     }
